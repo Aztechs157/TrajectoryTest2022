@@ -7,6 +7,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.drive.Autonomous;
+import frc.robot.drive.DriveSystem;
+import frc.robot.drive.ManualTrajectories;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -18,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+    private final DriveSystem driveSystem = new DriveSystem();
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -38,12 +42,18 @@ public class RobotContainer {
     private void configureButtonBindings() {
     }
 
+    private final Autonomous autonomous = new Autonomous();
+    {
+        autonomous.add("Do Nothing", ManualTrajectories.doNothing());
+        autonomous.add("Criss Cross", ManualTrajectories.crissCross());
+    }
+
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.
      *
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        return null;
+        return autonomous.getCommand(driveSystem);
     }
 }

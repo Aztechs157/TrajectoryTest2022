@@ -38,6 +38,8 @@ public final class Constants {
     /** MetersPerSecondSquared */
     public static final double kMaxAcceleration = 3;
 
+    public static final double kMaxVoltage = 10;
+
     public static final double kRamseteB = 2;
     public static final double kRamseteZeta = 0.7;
 

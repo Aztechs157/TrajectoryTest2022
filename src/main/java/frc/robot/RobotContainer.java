@@ -4,12 +4,16 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.drive.Autonomous;
+import edu.wpi.first.wpilibj2.command.SelectCommand;
 import frc.robot.drive.DriveSystem;
+import frc.robot.drive.FollowTrajectory;
 import frc.robot.drive.ManualTrajectories;
 
 /**
@@ -44,10 +48,11 @@ public class RobotContainer {
     private void configureButtonBindings() {
     }
 
-    private final Autonomous autonomous = new Autonomous();
+    private final SendableChooser<Trajectory> autoChooser = new SendableChooser<>();
     {
-        autonomous.add("Go Foward", ManualTrajectories.goFoward());
-        autonomous.add("Criss Cross", ManualTrajectories.crissCross());
+        autoChooser.setDefaultOption("Go Foward", ManualTrajectories.goFoward());
+        autoChooser.addOption("Criss Cross", ManualTrajectories.crissCross());
+        SmartDashboard.putData("Auto Chooser", autoChooser);
     }
 
     /**
@@ -56,6 +61,11 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        return autonomous.getCommand(driveSystem);
+        // SelectCommand allows us to delay creating the command until auto is started,
+        // allowing us to select a trajaectory while disabled
+        return new SelectCommand(() -> {
+            final var trajectory = autoChooser.getSelected();
+            return new FollowTrajectory(driveSystem, trajectory);
+        });
     }
 }

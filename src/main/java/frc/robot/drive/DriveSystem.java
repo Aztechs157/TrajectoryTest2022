@@ -62,27 +62,10 @@ public class DriveSystem extends SubsystemBase {
     public DifferentialDriveWheelSpeeds getWheelSpeeds() {
         return new DifferentialDriveWheelSpeeds(encoderLeft.getVelocity(), encoderRight.getVelocity());
     }
-
-    public double getAverageEncoderDistance() {
-        return (encoderLeft.getPosition() + encoderRight.getPosition()) / 2.0;
-    }
-
     // #endregion
 
     // #region Gyro
     private final Gyro gyro = new ADXRS450_Gyro();
-
-    public void zeroHeading() {
-        gyro.reset();
-    }
-
-    public double getHeading() {
-        return gyro.getRotation2d().getDegrees();
-    }
-
-    public double getTurnRate() {
-        return -gyro.getRate();
-    }
     // #endregion
 
     // #region Odometry

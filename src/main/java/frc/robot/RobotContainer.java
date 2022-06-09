@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.drive.Autonomous;
 import frc.robot.drive.DriveSystem;
@@ -27,6 +28,7 @@ public class RobotContainer {
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
     public RobotContainer() {
+        LiveWindow.disableAllTelemetry();
         // Configure the button bindings
         configureButtonBindings();
     }
@@ -44,7 +46,7 @@ public class RobotContainer {
 
     private final Autonomous autonomous = new Autonomous();
     {
-        autonomous.add("Do Nothing", ManualTrajectories.doNothing());
+        autonomous.add("Go Foward", ManualTrajectories.goFoward());
         autonomous.add("Criss Cross", ManualTrajectories.crissCross());
     }
 

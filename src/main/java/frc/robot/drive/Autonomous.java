@@ -6,11 +6,15 @@ package frc.robot.drive;
 
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SelectCommand;
 
 public class Autonomous {
     private final SendableChooser<Trajectory> chooser = new SendableChooser<>();
     private boolean hasDefault = false;
+    {
+        SmartDashboard.putData("Auto Chooser", chooser);
+    }
 
     /**
      * Generate a command from this Autonomous to be used in

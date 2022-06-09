@@ -4,9 +4,9 @@
 
 package frc.robot.drive;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 
-public class StopDriving extends InstantCommand {
+public class StopDriving extends RunCommand {
 
     /** Creates a new StopDriving. */
     public StopDriving(final DriveSystem driveSystem) {

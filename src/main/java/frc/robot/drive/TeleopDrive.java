@@ -21,7 +21,7 @@ public class TeleopDrive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        final var xSpeed = joystick.getRawAxis(1);
+        final var xSpeed = -joystick.getRawAxis(1);
         final var zRotate = joystick.getRawAxis(4);
         driveSystem.arcadeDrive(xSpeed, zRotate);
     }

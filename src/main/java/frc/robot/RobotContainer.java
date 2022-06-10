@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-    private final Joystick joystick = new Joystick(0);
+    private final Joystick joystick = new Joystick(Constants.kJoystickId);
 
     // The robot's subsystems and commands are defined here...
     private final DriveSystem driveSystem = new DriveSystem();

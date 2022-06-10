@@ -12,6 +12,7 @@
       "/LiveWindow/DriveSystem": "Subsystem",
       "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
+      "/Shuffleboard/Drive/Reset Encoders": "Command",
       "/SmartDashboard/Left Encoder": "Motor Controller"
     }
   },

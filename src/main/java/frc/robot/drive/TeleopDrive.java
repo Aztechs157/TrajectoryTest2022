@@ -6,6 +6,7 @@ package frc.robot.drive;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 
 public class TeleopDrive extends CommandBase {
     private final Joystick joystick;
@@ -21,8 +22,8 @@ public class TeleopDrive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        final var xSpeed = -joystick.getRawAxis(1);
-        final var zRotation = joystick.getRawAxis(4);
+        final var xSpeed = -joystick.getRawAxis(1) * Constants.kTeleopPercent;
+        final var zRotation = joystick.getRawAxis(4) * Constants.kTeleopPercent;
         driveSystem.arcadeDrive(xSpeed, zRotation);
     }
 }

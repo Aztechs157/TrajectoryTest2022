@@ -47,4 +47,8 @@ public final class Constants {
 
     public static final int kMotorLeft = 2;
     public static final int kMotorRight = 3;
+
+    public static final double kTeleopPercent = 0.5;
+
+    public static final double kRotationsToMeters = 0.05346700048;
 }

@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -56,8 +57,12 @@ public class DriveSystem extends SubsystemBase {
     private final RelativeEncoder encoderLeft = motorLeft.getEncoder();
     private final RelativeEncoder encoderRight = motorRight.getEncoder();
     {
-        // REV encoders don't have setDistancePerPulse()
-        // find replacment
+        encoderLeft.setPositionConversionFactor(Constants.kRotationsToMeters);
+        encoderRight.setPositionConversionFactor(Constants.kRotationsToMeters);
+
+        tab.addNumber("Left Encoder", encoderLeft::getPosition);
+        tab.addNumber("Right Encoder", encoderRight::getPosition);
+        tab.add("Reset Encoders", new InstantCommand(this::resetEncoders));
     }
 
     public void resetEncoders() {

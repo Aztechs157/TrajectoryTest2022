@@ -12,6 +12,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -59,6 +60,8 @@ public class DriveSystem extends SubsystemBase {
     {
         encoderLeft.setPositionConversionFactor(Constants.kRotationsToMeters);
         encoderRight.setPositionConversionFactor(Constants.kRotationsToMeters);
+        encoderLeft.setPositionConversionFactor(Constants.kRPMToMetersPerSecond);
+        encoderRight.setPositionConversionFactor(Constants.kRPMToMetersPerSecond);
 
         tab.addNumber("Left Encoder", encoderLeft::getPosition);
         tab.addNumber("Right Encoder", encoderRight::getPosition);

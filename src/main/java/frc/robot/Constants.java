@@ -51,4 +51,5 @@ public final class Constants {
     public static final double kTeleopPercent = 0.5;
 
     public static final double kRotationsToMeters = 0.05346700048;
+    public static final double kRPMToMetersPerSecond = kRotationsToMeters / 60;
 }

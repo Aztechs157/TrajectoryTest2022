@@ -40,6 +40,7 @@
     "editor.semanticHighlighting.enabled": true,
     "files.eol": "\n",
     "cSpell.words": [
-        "Romi"
+        "Romi",
+        "Teleop"
     ],
 }

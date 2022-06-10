@@ -5,6 +5,9 @@
 package frc.robot;
 
 import frc.robot.drive.DriveSystem;
+import frc.robot.drive.TeleopDrive;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -17,13 +20,19 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+    private final Joystick joystick = new Joystick(0);
+
     // The robot's subsystems and commands are defined here...
     private final DriveSystem driveSystem = new DriveSystem();
+    {
+        driveSystem.setDefaultCommand(new TeleopDrive(joystick, driveSystem));
+    }
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
     public RobotContainer() {
+        LiveWindow.disableAllTelemetry();
         // Configure the button bindings
         configureButtonBindings();
     }

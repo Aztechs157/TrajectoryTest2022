@@ -14,41 +14,47 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveSystem extends SubsystemBase {
+    private final ShuffleboardTab tab = Shuffleboard.getTab("Drive");
 
     // #region Motors
-    private final CANSparkMax motorLeft1 = new CANSparkMax(Constants.kMotorLeft1, MotorType.kBrushless);
-    private final CANSparkMax motorLeft2 = new CANSparkMax(Constants.kMotorLeft2, MotorType.kBrushless);
-    private final MotorControllerGroup motorsLeft = new MotorControllerGroup(motorLeft1, motorLeft2);
+    private final CANSparkMax motorLeft = new CANSparkMax(Constants.kMotorLeft, MotorType.kBrushless);
+    private final CANSparkMax motorRight = new CANSparkMax(Constants.kMotorRight, MotorType.kBrushless);
     {
-        motorsLeft.setInverted(false);
+        motorLeft.setInverted(true);
+        motorRight.setInverted(false);
     }
 
-    private final CANSparkMax motorRight1 = new CANSparkMax(Constants.kMotorRight1, MotorType.kBrushless);
-    private final CANSparkMax motorRight2 = new CANSparkMax(Constants.kMotorRight2, MotorType.kBrushless);
-    private final MotorControllerGroup motorsRight = new MotorControllerGroup(motorRight1, motorRight2);
+    private final DifferentialDrive drive = new DifferentialDrive(motorLeft, motorRight);
     {
-        motorsRight.setInverted(true);
+        tab.add("Drive", drive);
     }
-
-    private final DifferentialDrive drive = new DifferentialDrive(motorsLeft, motorsRight);
 
     public void tankDriveVolts(final double leftVolts, final double rightVolts) {
-        motorsLeft.setVoltage(leftVolts);
-        motorsRight.setVoltage(rightVolts);
+        motorLeft.setVoltage(leftVolts);
+        motorRight.setVoltage(rightVolts);
         drive.feed();
+    }
+
+    public void arcadeDrive(final double xSpeed, final double zRotation) {
+        drive.arcadeDrive(xSpeed, zRotation);
+    }
+
+    public void tankDrive(final double leftSpeed, final double rightSpeed) {
+        drive.tankDrive(leftSpeed, rightSpeed);
     }
     // #endregion
 
     // #region Encoders
     // This only uses the front two encoders for now,
     // posibally average both the front and back later?
-    private final RelativeEncoder encoderLeft = motorLeft1.getEncoder();
-    private final RelativeEncoder encoderRight = motorRight1.getEncoder();
+    private final RelativeEncoder encoderLeft = motorLeft.getEncoder();
+    private final RelativeEncoder encoderRight = motorRight.getEncoder();
     {
         // REV encoders don't have setDistancePerPulse()
         // find replacment

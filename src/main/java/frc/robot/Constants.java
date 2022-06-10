@@ -28,6 +28,8 @@ public final class Constants {
 
     public static final double kDriveVelocityP = 8.5;
 
+    public static final double kWheelRadius = 0;
+
     /** Meters */
     public static final double kTrackwidth = 0.69;
     public static final DifferentialDriveKinematics kDriveKinematics = //
@@ -43,8 +45,6 @@ public final class Constants {
     public static final double kRamseteB = 2;
     public static final double kRamseteZeta = 0.7;
 
-    public static final int kMotorLeft1 = 2;
-    public static final int kMotorLeft2 = 4;
-    public static final int kMotorRight1 = 1;
-    public static final int kMotorRight2 = 3;
+    public static final int kMotorLeft = 2;
+    public static final int kMotorRight = 3;
 }

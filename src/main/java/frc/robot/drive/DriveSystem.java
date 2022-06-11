@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -38,6 +39,9 @@ public class DriveSystem extends SubsystemBase {
     }
 
     public void tankDriveVolts(final double leftVolts, final double rightVolts) {
+        SmartDashboard.putNumber("Left Volts", leftVolts);
+        SmartDashboard.putNumber("Right Volts", rightVolts);
+
         motorLeft.setVoltage(leftVolts);
         motorRight.setVoltage(rightVolts);
         drive.feed();

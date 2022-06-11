@@ -20,18 +20,18 @@ import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
  */
 public final class Constants {
     /** Volts */
-    public static final double kFeedfowardS = 0.22;
+    public static final double kFeedfowardS = 0.17329;
     /** VoltSecondsPerMeter */
-    public static final double kFeedfowardV = 1.98;
+    public static final double kFeedfowardV = 1.3809;
     /** VoltSecondsSquaredPerMeter */
-    public static final double kFeedfowardA = 0.2;
+    public static final double kFeedfowardA = 0.39706;
 
-    public static final double kDriveVelocityP = 8.5;
+    public static final double kDriveVelocityP = 0.0011016;
 
-    public static final double kWheelRadius = 0;
+    public static final double kWheelRadius = 3.25;
 
     /** Meters */
-    public static final double kTrackwidth = 0.69;
+    public static final double kTrackwidth = 0.5207;
     public static final DifferentialDriveKinematics kDriveKinematics = //
             new DifferentialDriveKinematics(kTrackwidth);
 

@@ -65,7 +65,12 @@ public class DriveSystem extends SubsystemBase {
 
         tab.addNumber("Left Encoder", encoderLeft::getPosition);
         tab.addNumber("Right Encoder", encoderRight::getPosition);
-        tab.add("Reset Encoders", new InstantCommand(this::resetEncoders));
+        tab.add("Reset Encoders", new InstantCommand(this::resetEncoders) {
+            @Override
+            public boolean runsWhenDisabled() {
+                return true;
+            }
+        });
     }
 
     public void resetEncoders() {

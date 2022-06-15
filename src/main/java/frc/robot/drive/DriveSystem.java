@@ -64,8 +64,8 @@ public class DriveSystem extends SubsystemBase {
     {
         encoderLeft.setPositionConversionFactor(Constants.kRotationsToMeters);
         encoderRight.setPositionConversionFactor(Constants.kRotationsToMeters);
-        encoderLeft.setPositionConversionFactor(Constants.kRPMToMetersPerSecond);
-        encoderRight.setPositionConversionFactor(Constants.kRPMToMetersPerSecond);
+        encoderLeft.setVelocityConversionFactor(Constants.kRPMToMetersPerSecond);
+        encoderRight.setVelocityConversionFactor(Constants.kRPMToMetersPerSecond);
 
         tab.addNumber("Left Encoder", encoderLeft::getPosition);
         tab.addNumber("Right Encoder", encoderRight::getPosition);

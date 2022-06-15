@@ -18,11 +18,11 @@ import frc.robot.Constants;
 
 public class ManualTrajectories {
     /**
-     * Create a trajectory that goes foward
+     * Create a trajectory that goes forward
      *
      * @return The trajectory
      */
-    public static Trajectory goFoward() {
+    public static Trajectory goForward() {
         return TrajectoryGenerator.generateTrajectory(
                 new Pose2d(0, 0, new Rotation2d(0)),
                 List.of(),

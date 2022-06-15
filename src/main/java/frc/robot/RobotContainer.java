@@ -57,7 +57,7 @@ public class RobotContainer {
 
     private final SendableChooser<Trajectory> autoChooser = new SendableChooser<>();
     {
-        autoChooser.setDefaultOption("Go Foward", ManualTrajectories.goFoward());
+        autoChooser.setDefaultOption("Go Foward", ManualTrajectories.goForward());
         autoChooser.addOption("Criss Cross", ManualTrajectories.crissCross());
         SmartDashboard.putData("Auto Chooser", autoChooser);
     }
